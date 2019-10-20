@@ -1,0 +1,14 @@
+    -----
+    API
+    -----
+
+/profile
+/robotRace
+    -Description: you bet 10% of your bits always in order to register to this race. You have to register before the race starts. The race lasts 10 min, after this,
+    the race results will be posted and the countdown to start the new one will be posted.
+
+    -How the algorith works:es basa en la sort pero no tot es sort(sino donaria igual per quin robot apostar) sino que hi han factors que fan que un robot tingui més probabilitats de guanyar
+    que un altre. P.exmple: si un robot guanya moltes partides, si un robot ha quedat ultim mols cops(durant un temps tendra probabilitat negativa pero tmb tindra una probabilitat apart
+    que si surt pues fara que tingui una probabilitat positiva bastant alta), la probabilitat positiva dels robots que quedin 2 i 3 es determinara aleatoriament tambe...etc
+
+
