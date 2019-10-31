@@ -1,12 +1,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BitGamb.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BitGamb.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class BitgambController : ControllerBase
@@ -37,6 +39,7 @@ namespace BitGamb.API.Controllers
             return Ok(robots);
         }
 
+        [AllowAnonymous]
         // GET /bitgamb/robots/{id}
         [HttpGet("robots/{id}")]
         public async Task<IActionResult> GetRobots(int id)

@@ -8,6 +8,7 @@ namespace BitGamb.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options){}
 
         public DbSet<Robot> Robots {get; set;}
+        public DbSet<User> Users {get; set;}
 
     }
 }
