@@ -27,7 +27,7 @@ namespace BitGamb.API.Controllers
 
         [HttpPost("register")]
         // POST auth/register
-        public async Task<IActionResult> register(UserForRegisterDTO userForRegisterDto)
+        public async Task<IActionResult> register(UserForRegisterDTO userForRegisterDto) //ApiController gets username, passwd from Body, and asp receives it as dto
         {
             userForRegisterDto.username = userForRegisterDto.username.ToLower();
 
@@ -53,7 +53,6 @@ namespace BitGamb.API.Controllers
         // POST auth/login
         public async Task<IActionResult> login(userForLoginDTO userForLoginDto)
         {
-
             var userFromRepo = await _repo.Login(userForLoginDto.username.ToLower(), userForLoginDto.password);
 
             // creation of token identifier
