@@ -3,48 +3,23 @@ using System;
 using BitGamb.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BitGamb.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191208121733_initial_postrge")]
+    partial class initial_postrge
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("BitGamb.API.Models.RaceRegistries", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("RobotRaceid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Robotid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Userid")
-                        .HasColumnType("integer");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("RobotRaceid");
-
-                    b.HasIndex("Robotid");
-
-                    b.HasIndex("Userid");
-
-                    b.ToTable("RaceRegistries");
-                });
 
             modelBuilder.Entity("BitGamb.API.Models.Robot", b =>
                 {
@@ -101,21 +76,6 @@ namespace BitGamb.API.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BitGamb.API.Models.RaceRegistries", b =>
-                {
-                    b.HasOne("BitGamb.API.Models.RobotRace", "RobotRace")
-                        .WithMany()
-                        .HasForeignKey("RobotRaceid");
-
-                    b.HasOne("BitGamb.API.Models.Robot", "Robot")
-                        .WithMany()
-                        .HasForeignKey("Robotid");
-
-                    b.HasOne("BitGamb.API.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("Userid");
                 });
 #pragma warning restore 612, 618
         }

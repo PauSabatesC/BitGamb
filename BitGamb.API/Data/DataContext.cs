@@ -9,6 +9,9 @@ namespace BitGamb.API.Data
 
         public DbSet<Robot> Robots {get; set;}
         public DbSet<User> Users {get; set;}
+        public DbSet<RobotRace> RobotRaces {get; set;}
+
+        public DbSet<RaceRegistries> RaceRegistries {get; set;}
 
     }
 }

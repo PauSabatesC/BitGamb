@@ -1,11 +1,8 @@
-namespace BitGamb.API.Models
+namespace BitGamb.API.DTOs
 {
-    public class Robot
+    public class RobotsDTO
     {
-        public int id {get; set;}
-
         public string robotName {get; set;}
-
         public int LastRacePosition {get; set;}
 
     }

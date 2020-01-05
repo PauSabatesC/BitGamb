@@ -12,5 +12,7 @@ namespace BitGamb.API.Models
 
         public byte[] passwordSalt {get; set;}
 
+        public int bits {get; set;}
+
     }
 }
