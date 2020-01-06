@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BitGamb.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -68,6 +69,12 @@ namespace BitGamb.API.Data
         {
             if (await _context.Users.AnyAsync(x => x.username == username)) return true;
             else return false;
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var users = await _context.Users.ToArrayAsync();
+            return users;
         }
     }
 }

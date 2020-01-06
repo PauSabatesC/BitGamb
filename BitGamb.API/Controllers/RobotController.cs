@@ -26,7 +26,7 @@ namespace BitGamb.API.Controllers
         //GET /robot/list
         public async Task<IActionResult> GetAllRobots()
         {
-            var robots = await _robotRepository.GetRobots();    
+            var robots = await _robotRepository.GetRobots();
 
             if (robots != null)
             {

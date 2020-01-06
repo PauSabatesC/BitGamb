@@ -10,7 +10,7 @@ namespace BitGamb.API.Helpers
         public DtoMappings()
         {
             CreateMap<Robot, RobotsDTO>();
-
+            CreateMap<User, UserInfoDTO>();
 
         }
 

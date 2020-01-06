@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BitGamb.API.Data;
 using BitGamb.API.DTOs;
 using BitGamb.API.Models;
@@ -19,8 +21,10 @@ namespace BitGamb.API.Controllers
     {
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
             _config = config;
         }
@@ -31,7 +35,7 @@ namespace BitGamb.API.Controllers
         {
             userForRegisterDto.username = userForRegisterDto.username.ToLower();
 
-            if(!await _repo.UserExists(userForRegisterDto.username))
+            if (!await _repo.UserExists(userForRegisterDto.username))
             {
                 var userToCreate = new User
                 {
@@ -57,7 +61,7 @@ namespace BitGamb.API.Controllers
 
             // creation of token identifier
             if (userFromRepo != null)
-            {      
+            {
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.NameIdentifier, userFromRepo.id.ToString()),
@@ -73,9 +77,10 @@ namespace BitGamb.API.Controllers
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                
-                return Ok(new {
-                token = tokenHandler.WriteToken(token)
+
+                return Ok(new
+                {
+                    token = tokenHandler.WriteToken(token)
                 });
             }
             else
@@ -83,6 +88,18 @@ namespace BitGamb.API.Controllers
                 return Unauthorized();
             }
 
+
+        }
+
+        [HttpGet("players")]
+        // GET /auth/players
+        public async Task<IActionResult> GetUsers()
+        {
+            var users = await _repo.GetUsers();
+            var userToReturn = _mapper.Map<IEnumerable<UserInfoDTO>>(users);
+
+            return Ok(userToReturn);
+            //TODO: ADD try catch error
 
         }
 
